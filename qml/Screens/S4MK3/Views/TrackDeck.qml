@@ -15,12 +15,12 @@ Item {
   // MODEL PROPERTIES //
   property var deckInfo: ({})
   property real boxesRadius:      dimensions.cornerRadius
-  property real infoBoxesWidth:   dimensions.infoBoxesWidth
+  property real infoBoxesWidth:   dimensions.infoBoxesWidth +4
   property real firstRowHeight:   dimensions.firstRowHeight
   property real secondRowHeight:  dimensions.secondRowHeight
-  property real spacing:          dimensions.spacing
+  property real spacing:          dimensions.spacing-3
   property real screenTopMargin:  dimensions.screenTopMargin
-  property real screenLeftMargin: dimensions.screenLeftMargin
+  property real screenLeftMargin: dimensions.screenLeftMargin-2
 
   width  : 320
   height : 240
@@ -160,7 +160,7 @@ Item {
       Item {
         id: timeBox
         width : display.infoBoxesWidth
-        height: display.secondRowHeight-35
+        height: display.secondRowHeight-40
 
         Rectangle {
           anchors.fill: parent
@@ -170,7 +170,7 @@ Item {
 
         Text {
           text: deckInfo.remainingTimeString
-          font.pixelSize: 35
+          font.pixelSize: 30
           font.family: "Roboto"
           font.weight: Font.Medium
           color: trackEndBlinkTimer.blink ? "black": "white"
@@ -201,7 +201,7 @@ Item {
       Item {
         id: loopBox
         width : display.infoBoxesWidth
-        height: display.secondRowHeight-35
+        height: display.secondRowHeight-40
 
         Rectangle {
           anchors.fill: parent
@@ -211,7 +211,7 @@ Item {
 
         Text {
           text: deckInfo.loopSizeString
-          font.pixelSize: 35
+          font.pixelSize: 30
           font.family: "Roboto"
           font.weight: Font.Medium
           color: deckInfo.loopActive ? "black" : ( deckInfo.shift ? colors.colorDeckGrey : colors.defaultTextColor )
@@ -224,6 +224,16 @@ Item {
       
 
     } // second row
+	
+	// STRIPE //
+	Widgets.PhaseMeter
+    {
+      height: 12
+      width:  2*display.infoBoxesWidth + display.spacing
+      anchors.left: parent.left
+	  
+	  phase:  deckInfo.phase
+    }
 
     // STRIPE //
     Widgets.Stripe
@@ -236,9 +246,8 @@ Item {
       //not taken into the height of the Stripe. They are 3pix outside
       //of the stripe.
       height: display.secondRowHeight+23
-      width:  2*display.infoBoxesWidth + display.spacing - 6
+      width:  2*display.infoBoxesWidth + display.spacing
       anchors.left: parent.left
-      anchors.leftMargin: 6
 
 
       hotcuesModel: deckInfo.hotcues

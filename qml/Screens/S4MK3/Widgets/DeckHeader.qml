@@ -14,7 +14,9 @@ Item {
 
   Rectangle {
     id           : headerBg
-    color        : widget.backgroundColor
+    color        : (deckId == 1 || deckId == 2) ? colors.colorDeckBlueBright
+					: (deckId == 3 || deckId == 4) ? colors.colorDeckOrangeBright
+					 :  colors.white
     anchors.fill : parent
     radius: dimensions.cornerRadius
 
@@ -29,8 +31,9 @@ Item {
       font.weight: Font.Normal
 
       font.pixelSize: 22
-      color: colors.defaultTextColor
+      color: colors.black
       elide: Text.ElideRight
+	  
       text: widget.title
     }
 	
@@ -40,14 +43,15 @@ Item {
       anchors.fill : parent
       anchors.leftMargin:   dimensions.titleTextMargin
       anchors.rightMargin:  dimensions.titleTextMargin
+	  anchors.topMargin: 23
       font.family: "Roboto"
-      font.weight: Font.Bold
+      font.weight: Font.Normal
+	  
 	  elide: Text.ElideRight
       font.pixelSize: 20
-      color: colors.defaultTextColor
-	  width: Text.Wrap
-      
-      text: '\n'+widget.artist
+      color: colors.black
+	  
+      text: widget.artist
     }
     
 	

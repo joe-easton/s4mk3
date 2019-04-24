@@ -7,7 +7,9 @@ Traktor.Stripe {
   property var hotcuesModel:  {}
   property int           trackLength: 0
   property real          elapsedTime: 0
-  property bool          trackEndWarning: false
+  property int           interval: 1000
+  property string timeInterval: deckInfo.remainingTimeString
+  property bool          trackEndWarning: deckInfo.trackEndWarning
   readonly property var  waveformColors:   colors.getDefaultWaveformColors()
   
   //-----------------------------------------------------Traktor Stripe Props--------------------------------------------
@@ -80,6 +82,8 @@ Traktor.Stripe {
 
   Rectangle {
     id: trackEndWarningOverlay
+	
+	
 
     anchors.left: parent.left
     width:  posIndicator.x
@@ -92,14 +96,17 @@ Traktor.Stripe {
     Timer {
       id: timer
       property bool blinker: false
+	  property int intervalTime: timeInterval.substr(4,5).toInt()*30
+									
 
-      interval: 700
+      interval: 250
       repeat:   true
       running: trackEndWarning
 
-      onTriggered: { 
-        trackEndWarningOverlay.opacity = (blinker) ? 0.35 : 0;
+      onTriggered: {
+        trackEndWarningOverlay.opacity = (blinker) ? 0.75 : 0;
         blinker = !blinker;
+		
       }
     }
   }
@@ -115,7 +122,7 @@ Traktor.Stripe {
     x:                 relativePlayPos * stripe.width
     anchors.bottom:    parent.bottom
     height:            parent.height
-    width:             2
+    width:             1
     color:             colors.rgba(255, 56, 26, 255) 
     opacity:           1
   }

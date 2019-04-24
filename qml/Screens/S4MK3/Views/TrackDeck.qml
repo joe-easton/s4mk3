@@ -29,9 +29,7 @@ Item {
   {
     id: displayBackground
     anchors.fill : parent
-    color: (deckId == 1 || deckId == 2) ? colors.colorDeckBlueBright
-			: (deckId == 3 || deckId == 4) ? colors.colorDeckOrangeBright
-			 :  colors.defaultBackground
+    color: colors.defaultBackground
   }
 
   ColumnLayout
@@ -52,7 +50,7 @@ Item {
       title:  deckInfo.titleString
 	  artist: deckInfo.artistString	
 
-      height: display.firstRowHeight +18
+      height: display.firstRowHeight +15
       width:  2*display.infoBoxesWidth + 5
 				
     }
@@ -66,11 +64,12 @@ Item {
       // BPM DISPLAY //
       Rectangle {
         id: bpmBox
-        height: display.firstRowHeight
+        height: display.firstRowHeight -3
         width:  display.infoBoxesWidth - 52
 
-		color: (deckInfo.isSyncOn) ?  colors.loopActiveDimmedColor
-                : colors.defaultBackground
+		color: (deckInfo.masterDeck == deckInfo.deckId) ? colors.loopActiveColor
+				: (deckInfo.bpmOffset <= 0.05) && (deckInfo.bpmOffset >= - 0.05) ?  colors.loopActiveDimmedColor
+					: colors.colorRed
         radius: display.boxesRadius
 
         Text {
@@ -78,7 +77,7 @@ Item {
           font.pixelSize: 24
           font.family: "Roboto"
           font.weight: Font.Normal
-          color: "white"
+          color: "black"
           anchors.fill: parent
           horizontalAlignment: Text.AlignHCenter
           verticalAlignment: Text.AlignVCenter
@@ -89,11 +88,11 @@ Item {
 	  // TEMPO DISPLAY //
       Rectangle {
         id: tempoBox
-        height: display.firstRowHeight
+        height: display.firstRowHeight -3
         width:  display.infoBoxesWidth - 53
 
 		color: (deckInfo.tempoString < 0.05) && (deckInfo.tempoString > - 0.05) ?  colors.hotcue.hotcue
-                : colors.defaultBackground
+                : colors.colorBluePlaymarker
         radius: display.boxesRadius
 
         Text {
@@ -101,7 +100,7 @@ Item {
           font.pixelSize: 24
           font.family: "Roboto"
           font.weight: Font.Normal
-          color: "white"
+          color: "black"
           anchors.fill: parent
           horizontalAlignment: Text.AlignHCenter
           verticalAlignment: Text.AlignVCenter
@@ -113,7 +112,7 @@ Item {
       Rectangle {
         id: keyBox
         
-        height: display.firstRowHeight
+        height: display.firstRowHeight -3
         width:  display.infoBoxesWidth - 52
 		
 		
@@ -124,11 +123,13 @@ Item {
 
         Text {
           id: keyText
-          text: deckInfo.hasKey ? deckInfo.keyString : "No key"
-          font.pixelSize: 24
+          text: deckInfo.hasKey && (deckInfo.keyAdjustString != "-0") && (deckInfo.keyAdjustString != "+0") ? deckInfo.keyString + " " + deckInfo.keyAdjustString
+				: deckInfo.hasKey ? deckInfo.keyString
+					: "No key"
+          font.pixelSize: 24	
           font.family: "Roboto"
           font.weight: Font.Normal
-          color: colors.colorWhite
+          color: "black"
           anchors.verticalCenter: parent.verticalCenter
           anchors.horizontalCenter: parent.horizontalCenter
         }
@@ -137,11 +138,11 @@ Item {
         Text {
           visible: deckInfo.isKeyLockOn && deckInfo.hasKey
           text: "\u25CF"
-          font.pixelSize: 24
+          font.pixelSize: 14
           font.family: "Roboto"
           font.weight: Font.Normal
-          color: colors.loopActiveColor
-          anchors.left: keyText.right
+          color: "black"
+          anchors.left: parent.left
           anchors.leftMargin: 3
           anchors.verticalCenter: parent.verticalCenter
         }
@@ -160,7 +161,7 @@ Item {
       Item {
         id: timeBox
         width : display.infoBoxesWidth
-        height: display.secondRowHeight-40
+        height: display.secondRowHeight-45
 
         Rectangle {
           anchors.fill: parent
@@ -170,7 +171,7 @@ Item {
 
         Text {
           text: deckInfo.remainingTimeString
-          font.pixelSize: 30
+          font.pixelSize: 28
           font.family: "Roboto"
           font.weight: Font.Medium
           color: trackEndBlinkTimer.blink ? "black": "white"
@@ -201,23 +202,42 @@ Item {
       Item {
         id: loopBox
         width : display.infoBoxesWidth
-        height: display.secondRowHeight-40
+        height: display.secondRowHeight-45
 
         Rectangle {
           anchors.fill: parent
-          color: deckInfo.loopActive ? (deckInfo.shift ? colors.loopActiveDimmedColor : colors.loopActiveColor) : (deckInfo.shift ? colors.colorDeckDarkGrey : colors.colorDeckGrey ) 
+          color: deckInfo.loopActiveLoop ? (loopActiveBlinkTimer.blink ? colors.colorRed : colors.loopActiveColor)
+					: deckInfo.loopActive ? (deckInfo.shift ? colors.loopActiveDimmedColor : colors.loopActiveColor) 
+						: deckInfo.shift ? colors.colorDeckDarkGrey : colors.colorDeckGrey 
           radius: display.boxesRadius
           }
 
         Text {
           text: deckInfo.loopSizeString
-          font.pixelSize: 30
+          font.pixelSize: 28
           font.family: "Roboto"
           font.weight: Font.Medium
           color: deckInfo.loopActive ? "black" : ( deckInfo.shift ? colors.colorDeckGrey : colors.defaultTextColor )
           anchors.fill: parent
           horizontalAlignment: Text.AlignHCenter
           verticalAlignment: Text.AlignVCenter
+        }
+		
+		Timer {
+          id: loopActiveBlinkTimer
+          property bool  blink: false
+	
+          interval: 120
+          repeat:   true
+          running:  deckInfo.loopActiveLoop
+
+          onTriggered: {
+            blink = !blink;
+          }
+
+          onRunningChanged: {
+            blink = running;
+          }
         }
       }
 
@@ -228,7 +248,7 @@ Item {
 	// STRIPE //
 	Widgets.PhaseMeter
     {
-      height: 12
+      height: 18
       width:  2*display.infoBoxesWidth + display.spacing
       anchors.left: parent.left
 	  

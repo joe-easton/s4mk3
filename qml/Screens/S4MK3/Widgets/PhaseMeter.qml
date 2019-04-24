@@ -44,7 +44,7 @@ Item {
     {
       color  : widget.separatorColor
       height : parent.height
-      width  : 2
+      width  : 1
       x : parent.width * 0.25 - 1
     }
 
@@ -53,7 +53,7 @@ Item {
     {
       color  : widget.separatorColor
       height : parent.height
-      width  : 2
+      width  : 1
       x : parent.width * 0.50 - 1
     }
 
@@ -62,7 +62,7 @@ Item {
     {
       color  : widget.separatorColor
       height : parent.height
-      width  : 2
+      width  : 1
       x : parent.width * 0.75 - 1
     }
 }

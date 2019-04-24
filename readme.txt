@@ -1,8 +1,17 @@
-README
+Install Instructions
 
-ALWAYS MAKE SURE YOU BACK UP YOUR 'qml' FOLDER BEFORE APPLYING THIS MOD - I will take no responsibility for any crashes or damage caused by this mod
+Mac:
 
-1. unzip the file
-2. copy and paste the qml folder to: C:\Program Files\Native Instruments\Traktor Pro 3\Resources64\qml
-3. replace all files 
-4. launch traktor
+1. Navigate to /Applications/Native Instruments/Traktor Pro 3
+2. Right click Traktor.app, then click Show Package Contents
+3. Navigate to Contents/Resources/qml
+4. Make a backup of the qml folder!
+5. Paste the ‘qml’ file from the zip you downloaded here and replace all files
+
+
+
+Windows:
+
+1. Navigate to C://Program Files/Native Instruments/Traktor Pro 3/Resources64
+2. Make a backup of the qml folder!
+3. Paste the ‘qml’ folder from the zip you downloaded here and replace all files

@@ -14,7 +14,7 @@ QtObject {
   property variant colorRedPlaymarker:          rgba(255, 0, 0, 255)
   property variant colorRedPlaymarker75:        rgba(255, 56, 26, 191)
   property variant colorRedPlaymarker06:        rgba(255, 56, 26, 31)
-  property variant colorBluePlaymarker:         rgba(96, 184, 192, 255)
+  property variant colorBluePlaymarker:         rgba(80, 150, 175, 255)
 
   property variant colorBlack50:                rgba (0, 0, 0, 128) 
   property variant colorBlack:                  rgba (0, 0, 0, 255) 
@@ -40,9 +40,9 @@ QtObject {
 
   property variant waveformColorsMap: [
     // test
-	{ low1:  rgba (200,   0,   0, 150),  low2:  rgba (255, 210,  20, 170),
-      mid1:  rgba ( 80, 245,  80, 110),  mid2:  rgba (190, 255, 100, 150),
-      high1: rgba ( 50, 220, 255, 120),  high2: rgba (  0, 245, 245, 120) },
+	{ low1:  rgba (200,   0,   0, 150),  low2:  rgba (245, 120,  10, 160),
+      mid1:  rgba (241, 230, 110, 120),  mid2:  rgba ( 20, 245, 170, 150),
+      high1: rgba (200, 230, 255, 140),  high2: rgba (170, 255, 255, 140) },
     // Default
     { low1:  rgba (24,   48,  80, 180),  low2:  rgba (24,   56,  96, 190),
       mid1:  rgba (80,  160, 160, 100),  mid2:  rgba (48,  112, 112, 150),

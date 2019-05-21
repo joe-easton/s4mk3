@@ -50,8 +50,8 @@ Item {
       title:  deckInfo.titleString
 	  artist: deckInfo.artistString	
 
-      height: display.firstRowHeight +15
-      width:  2*display.infoBoxesWidth + 5
+      height: display.firstRowHeight-6
+      width:  2*display.infoBoxesWidth + 4
 				
     }
 
@@ -120,7 +120,7 @@ Item {
 		color:     colors.musicalKeyColors[deckInfo.keyIndex]
                          
         radius: display.boxesRadius
-
+		
         Text {
           id: keyText
           text: deckInfo.hasKey && (deckInfo.keyAdjustString != "-0") && (deckInfo.keyAdjustString != "+0") ? deckInfo.keyString + " " + deckInfo.keyAdjustString
@@ -161,7 +161,7 @@ Item {
       Item {
         id: timeBox
         width : display.infoBoxesWidth
-        height: display.secondRowHeight-45
+        height: display.secondRowHeight-40
 
         Rectangle {
           anchors.fill: parent
@@ -202,11 +202,11 @@ Item {
       Item {
         id: loopBox
         width : display.infoBoxesWidth
-        height: display.secondRowHeight-45
+        height: display.secondRowHeight-40
 
         Rectangle {
           anchors.fill: parent
-          color: deckInfo.loopActiveLoop ? (loopActiveBlinkTimer.blink ? colors.colorRed : colors.loopActiveColor)
+          color: deckInfo.loopActiveLoop ? (loopActiveBlinkTimer.blink ? colors.loopActiveDimmedColor : colors.loopActiveColor)
 					: deckInfo.loopActive ? (deckInfo.shift ? colors.loopActiveDimmedColor : colors.loopActiveColor) 
 						: deckInfo.shift ? colors.colorDeckDarkGrey : colors.colorDeckGrey 
           radius: display.boxesRadius
@@ -227,7 +227,7 @@ Item {
           id: loopActiveBlinkTimer
           property bool  blink: false
 	
-          interval: 120
+          interval: 333
           repeat:   true
           running:  deckInfo.loopActiveLoop
 
@@ -244,6 +244,7 @@ Item {
       
 
     } // second row
+	
 	
 	// STRIPE //
 	Widgets.PhaseMeter
@@ -265,7 +266,7 @@ Item {
       //because Widgets.Stripes has elements (the cues) that are
       //not taken into the height of the Stripe. They are 3pix outside
       //of the stripe.
-      height: display.secondRowHeight+23
+      height: display.secondRowHeight+35
       width:  2*display.infoBoxesWidth + display.spacing
       anchors.left: parent.left
 

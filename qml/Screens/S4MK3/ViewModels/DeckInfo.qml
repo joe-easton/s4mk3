@@ -13,6 +13,15 @@ Item
   {
     return deckId == 1 || deckId == 3;
   }
+	
+	function deckLetter(deckId)
+  {
+    if (deckId == 1) {return "A"};
+	if (deckId == 2) {return "B"};
+	if (deckId == 3) {return "C"};
+	if (deckId == 4) {return "D"};
+
+  }
 
   ////////////////////////////////////
   /////// Track info properties //////
@@ -21,7 +30,7 @@ Item
   property int deckId: 1
   readonly property bool    trackEndWarning:      propTrackEndWarning.value
   readonly property bool    shift:                propShift.value
-  readonly property string  artistString:         isLoaded ? propArtist.value : "Please Load a Track to Deck " + deckId
+  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.4 By Joe Easton"
   readonly property string  bpmString:            isLoaded ? propBPM.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringA:            isLoaded ? propBPM1.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringB:            isLoaded ? propBPM2.value.toFixed(2).toString() : "0.00"
@@ -49,7 +58,7 @@ Item
   readonly property string  loopSizeString:       loopSizeText[propLoopSizeIdx.value]
   readonly property string  primaryKey:           propPrimaryKey.value
   readonly property string  remainingTimeString:  (!isLoaded) ? "00:00" : utils.computeRemainingTimeString(propTrackLength.value, propElapsedTime.value)
-  readonly property string  titleString:          isLoaded ? propTitle.value : "No Track Loaded"
+  readonly property string  titleString:          isLoaded ? propTitle.value : "Please Load a Track to Deck " + deckLetter(deckId) 
   readonly property int     trackLength:          propTrackLength.value
   readonly property real    phase:                propPhase.value
   readonly property bool    touchKey:             false // TODO map shift encoder touch event

@@ -7,7 +7,7 @@ Item {
   property string title: ''
   property string artist: ''
   property color  backgroundColor: colors.defaultBackground
-  height:         dimensions.firstRowHeight +18
+  height:         dimensions.firstRowHeight
 
   
   
@@ -18,42 +18,32 @@ Item {
 					: (deckId == 3 || deckId == 4) ? colors.colorDeckOrangeBright
 					 :  colors.white
     anchors.fill : parent
-    radius: dimensions.cornerRadius
-
-    
-    // TRACK NAME // 
-    Text
-    {
-      anchors.fill : parent
-      anchors.leftMargin:   dimensions.titleTextMargin
-      anchors.rightMargin:  dimensions.titleTextMargin
-      font.family: "Roboto"
-      font.weight: Font.Normal
-
-      font.pixelSize: 22
-      color: colors.black
-      elide: Text.ElideRight
-	  
-      text: widget.title
-    }
+    radius: dimensions.cornerRadius	
 	
-	// ARTIST NAME // 
-    Text
-    {
-      anchors.fill : parent
-      anchors.leftMargin:   dimensions.titleTextMargin
-      anchors.rightMargin:  dimensions.titleTextMargin
-	  anchors.topMargin: 23
-      font.family: "Roboto"
-      font.weight: Font.Normal
-	  
-	  elide: Text.ElideRight
-      font.pixelSize: 20
-      color: colors.black
-	  
-      text: widget.artist
-    }
-    
+	Text {
+			  anchors.fill : parent
+			  anchors.leftMargin:   4
+			  anchors.rightMargin:  2
+			  font.family: "Roboto"
+			  font.weight: Font.Normal
+			  font.pixelSize: 22
+			  color: colors.black  
+			  text: widget.title
+			  elide: Text.ElideRight			
+			  visible: deckInfo.shift ? false : true
+	}	
 	
+	Text {
+			  anchors.fill : parent
+			  anchors.leftMargin:   4
+			  anchors.rightMargin:  2
+			  font.family: "Roboto"
+			  font.weight: Font.Normal
+			  font.pixelSize: 22
+			  color: colors.black  
+			  text: widget.artist
+			  elide: Text.ElideRight			
+			  visible: deckInfo.shift ? true : false
+	}	
   }
 }

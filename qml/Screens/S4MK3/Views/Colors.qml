@@ -8,6 +8,8 @@ QtObject {
   property color defaultBackground:             "black"
   property color defaultTextColor:              "white"
   property color loopActiveColor:               rgba(0,255,70,255)
+  property color loopFlashColor:               rgba ( 20, 235, 165, 120)
+  
   property color loopActiveDimmedColor:         rgba(0,255,70,190)
   property color grayBackground:                "#ff333333"
 

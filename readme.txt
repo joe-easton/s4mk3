@@ -1,17 +1,23 @@
 Install Instructions
 
-Mac:
+Note: Backup only needed for first install, please do not replace the original qml files that are installed with Traktor.
+Note: You may need to install the hack each time after traktor has an update.
 
+Mac:
 1. Navigate to /Applications/Native Instruments/Traktor Pro 3
 2. Right click Traktor.app, then click Show Package Contents
 3. Navigate to Contents/Resources/qml
-4. Make a backup of the qml folder!
-5. Paste the ‘qml’ file from the zip you downloaded here and replace all files
-
+4. Rename the 'qml' folder to 'qml-old'
+5. Paste the ‘qml’ file from the zip you downloaded here and launch Traktor
 
 
 Windows:
-
 1. Navigate to C://Program Files/Native Instruments/Traktor Pro 3/Resources64
-2. Make a backup of the qml folder!
+2. Rename the 'qml' folder to 'qml-old'
 3. Paste the ‘qml’ folder from the zip you downloaded here and replace all files
+
+
+Resore to default: 
+1. Delete 'qml' folder
+2. Rename 'qml-old' to 'qml'
+

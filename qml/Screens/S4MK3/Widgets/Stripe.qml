@@ -7,8 +7,7 @@ Traktor.Stripe {
   property var hotcuesModel:  {}
   property int           trackLength: 0
   property real          elapsedTime: 0
-  property int           interval: 1000
-  property string timeInterval: deckInfo.remainingTimeString
+  property int           interval: 100
   property bool          trackEndWarning: deckInfo.trackEndWarning
   readonly property var  waveformColors:   colors.getDefaultWaveformColors()
   
@@ -96,7 +95,6 @@ Traktor.Stripe {
     Timer {
       id: timer
       property bool blinker: false
-	  property int intervalTime: timeInterval.substr(4,5).toInt()*30
 									
 
       interval: 250

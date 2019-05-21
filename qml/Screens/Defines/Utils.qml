@@ -28,4 +28,5 @@ QtObject {
   {
     return ((elapsed > length) ? convertToTimeString(0) : convertToTimeString( Math.floor(elapsed) - Math.floor(length)));
   }
+
 }

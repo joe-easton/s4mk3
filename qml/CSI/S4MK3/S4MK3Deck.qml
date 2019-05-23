@@ -1,11 +1,19 @@
 import CSI 1.0
 import "../../Defines"
+import '../../Screens/Defines' as Defines2
 import "../Common"
 import "S4MK3Functions.js" as S4MK3Functions
 
 Module
 {
   id: module
+  
+  Defines2.Settings  {id: settings}
+  property int deckA: settings.deckAColour
+  property int deckB: settings.deckBColour
+  property int deckC: settings.deckCColour
+  property int deckD: settings.deckDColour
+  
   property bool active: false
   property bool enablePads: false
   property bool shift: false
@@ -17,7 +25,7 @@ Module
   property bool deckPlaying: deckPlayingProp.value
   property bool isEncoderInUse: samples.isSlotSelected || stems.isStemSelected
   property bool isLinkedDeckEncoderInUse: false
-  property var deckColor: S4MK3Functions.colorForDeck(deckIdx)
+  property var deckColor: S4MK3Functions.colorForDeck(deckIdx,deckA,deckB,deckC,deckD)
   property bool hapticHotcuesEnabled: true
 
   MappingPropertyDescriptor {

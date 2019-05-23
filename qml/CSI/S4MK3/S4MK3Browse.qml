@@ -1,11 +1,19 @@
 import CSI 1.0
 import "../../Defines"
+import '../../Screens/Defines' as Defines2
 import "S4MK3Functions.js" as S4MK3Functions
 
 
 Module
 {
   id: module
+  
+  Defines2.Settings  {id: settings}
+  property int deckA: settings.deckAColour
+  property int deckB: settings.deckBColour
+  property int deckC: settings.deckCColour
+  property int deckD: settings.deckDColour
+  
   property string surface: ""
   property int deckIdx: 1
   property bool active: false
@@ -23,7 +31,7 @@ Module
   readonly property real onBrightness:     1.0
   readonly property real dimmedBrightness: 0.0
 
-  readonly property var deckColor: S4MK3Functions.colorForDeck(module.deckIdx)
+  readonly property var deckColor: S4MK3Functions.colorForDeck(module.deckIdx,deckA,deckB,deckC,deckD)
 
   Browser {
     name: "browser"

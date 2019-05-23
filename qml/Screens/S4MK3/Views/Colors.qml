@@ -32,6 +32,23 @@ QtObject {
   property variant colorQuantizeOn:             rgba ( 20, 255, 255, 170)
   property variant colorQuantizeOff:            darkerColor(colorQuantizeOn, 0.7)
   property variant colorRed:                    rgba(255,0,80,255)
+  
+  property color red:                    "#c80000"
+  property color darkOrange:             "#ff3200"     
+  property color lightOrange:            "#ff6e00"      
+  property color warmYellow:             "#ffa000"     
+  property color yellow:                 "#ffc800"   
+  property color lime:                   "#64aa00" 
+  property color green:                  "#0a9119"  
+  property color mint:                   "#00be5a"  
+  property color cyan:                   "#009b6e" 
+  property color turquoise:              "#0aa0aa"      
+  property color blue:                   "#1e55aa" 
+  property color plum:                   "#6446a0" 
+  property color violet:                 "#a028c8"   
+  property color purple:                 "#c81ea0"   
+  property color magenta:                "#e60a5a"    
+  property color fuschia:                "#ff0032"  
 
   //--------------------------------------------------------------------------------------------------------------------
 
@@ -114,6 +131,9 @@ QtObject {
       mid1:  rgba (255, 110, 110, 130),  mid2:  rgba (255, 125, 125, 160),
       high1: rgba (255, 210, 220, 140),  high2: rgba (255, 220, 230, 160) }
   ]
+  
+  
+                    
 
   function getDefaultWaveformColors()
   {

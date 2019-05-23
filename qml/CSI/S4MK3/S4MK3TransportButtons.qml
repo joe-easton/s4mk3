@@ -1,5 +1,6 @@
 import CSI 1.0
 import "S4MK3Functions.js" as S4MK3Functions
+import '../../Screens/Defines' as Defines
 
 Module
 {
@@ -7,8 +8,14 @@ Module
   property string surface: "" // e.g. "s4mk3.left"
   property int deckIdx: 0 // Traktor deck 1..4
   property bool active: false
-  property var deckColor: S4MK3Functions.colorForDeck(deckIdx)
+  Defines.Settings  {id: settings}
+  property int deckA: settings.deckAColour
+  property int deckB: settings.deckBColour
+  property int deckC: settings.deckCColour
+  property int deckD: settings.deckDColour
+  property var deckColor: S4MK3Functions.colorForDeck(deckIdx,deckA,deckB,deckC,deckD)
   property bool shift: false
+  
 
   TransportSection
   {

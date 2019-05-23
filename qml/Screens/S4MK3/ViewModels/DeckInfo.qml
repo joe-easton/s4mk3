@@ -1,6 +1,9 @@
 import QtQuick 2.5
 import CSI 1.0
 
+
+
+
 //----------------------------------------------------------------------------------------------------------------------
 //  Track Deck Model - provide data for the track deck view
 //----------------------------------------------------------------------------------------------------------------------
@@ -27,10 +30,11 @@ Item
   /////// Track info properties //////
   ////////////////////////////////////
 
+
   property int deckId: 1
   readonly property bool    trackEndWarning:      propTrackEndWarning.value
   readonly property bool    shift:                propShift.value
-  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.5 By Joe Easton"
+  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.6 By Joe Easton"
   readonly property string  bpmString:            isLoaded ? propBPM.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringA:            isLoaded ? propBPM1.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringB:            isLoaded ? propBPM2.value.toFixed(2).toString() : "0.00"

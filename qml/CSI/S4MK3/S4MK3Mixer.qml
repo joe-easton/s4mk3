@@ -13,8 +13,9 @@ Module
   Wire { from: "s4mk3.mixer.xfader.curve.scratch";  to: SetPropertyAdapter { path: "app.traktor.mixer.xfader.curve"; value: 1.0  } }
 
   // Quant and Snap
-  Wire { enabled: !module.shift; from: "s4mk3.mixer.quant"; to: TogglePropertyAdapter { path: "app.traktor.quant" } }
-  Wire { enabled:  module.shift; from: "s4mk3.mixer.quant"; to: TogglePropertyAdapter { path: "app.traktor.snap"  } }
+  Wire { enabled: !module.shift; from: "s4mk3.mixer.quant"; to: TogglePropertyAdapter { path: "app.traktor.quant"} }
+  Wire { enabled:  module.shift; from: "s4mk3.mixer.quant"; to: TogglePropertyAdapter { path: "app.traktor.snap"} }
+
 
   // Master Level Meters
   LEDLevelMeter { name: "leftMeter"; dBThresholds: [-15,-10,-7,-5,-3,-2,-1,0]; hasClipLED: true }

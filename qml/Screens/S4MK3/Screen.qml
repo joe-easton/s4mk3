@@ -31,6 +31,11 @@ Item {
   Defines.Settings  {id: settings}
   Defines.Durations {id: durations}
   Views.Colors {id: colors}
+  
+  property int deckA: settings.deckAColour
+  property int deckB: settings.deckBColour
+  property int deckC: settings.deckCColour
+  property int deckD: settings.deckDColour
 
   width:  320
   height: 240

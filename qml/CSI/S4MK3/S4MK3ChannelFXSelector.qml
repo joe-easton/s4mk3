@@ -1,18 +1,50 @@
 import CSI 1.0
+import "S4MK3Functions.js" as S4MK3Functions
+import '../../Screens/Defines' as Defines
 
 Module
 {
   id: module
+  
+  Defines.Settings  {id: settings}
+  property int fx1: settings.fx1Colour
+  property int fx2: settings.fx2Colour
+  property int fx3: settings.fx3Colour
+  property int fx4: settings.fx4Colour
+  property int filterColour: settings.filterColour
+  
+  function colorForDeck(mixerColour)
+	{
+
+			if (mixerColour == null) {return Color.Red} 
+				else if (mixerColour == 1) {return Color.Red} 
+				else if (mixerColour == 2) {return Color.DarkOrange} 
+				else if (mixerColour == 3) {return Color.LightOrange} 
+				else if (mixerColour == 4) {return Color.White} 
+				else if (mixerColour == 5) {return Color.Yellow} 
+				else if (mixerColour == 6) {return Color.Lime} 
+				else if (mixerColour == 7) {return Color.Green} 
+				else if (mixerColour == 8) {return Color.Mint} 
+				else if (mixerColour == 9) {return Color.Cyan} 
+				else if (mixerColour == 10) {return Color.Turquoise} 
+				else if (mixerColour == 11) {return Color.Blue} 
+				else if (mixerColour == 12) {return Color.Plum} 
+				else if (mixerColour == 13) {return Color.Violet} 
+				else if (mixerColour == 14) {return Color.Purple} 
+				else if (mixerColour == 15) {return Color.Magenta} 
+				else if (mixerColour == 16) {return Color.Fuschia}
+				else {return Color.Blue};
+	}
   property bool cancelMultiSelection: false
   property int currentlySelectedFx: -1
 
   // Mixer Effects Color Scheme
   readonly property variant colorScheme: [
-    Color.LightOrange,  // Filter
-    Color.Red,          // FX1
-    Color.Green,        // FX2
-    Color.Blue,         // FX3
-    Color.Yellow        // FX4
+    settings.filterColour,  // Filter
+    settings.fx1Colour,          // FX1
+    settings.fx2Colour,        // FX2
+    settings.fx3Colour,         // FX3
+    settings.fx4Colour        // FX4
   ]
 
    // Channel Fx  

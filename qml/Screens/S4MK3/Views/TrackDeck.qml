@@ -68,12 +68,13 @@ Item {
         width:  display.infoBoxesWidth - 52
 
 		color: (deckInfo.masterDeck == deckInfo.deckId) ? colors.loopActiveColor
-				: (deckInfo.bpmOffset <= 0.05) && (deckInfo.bpmOffset >= - 0.05) ?  colors.loopActiveDimmedColor
-					: colors.colorRed
+				: deckInfo.shift && (deckInfo.bpmOffset <= 0.05) && (deckInfo.bpmOffset >= - 0.05) ? colors.loopActiveColor
+					: (deckInfo.bpmOffset <= 0.05) && (deckInfo.bpmOffset >= - 0.05) ?  colors.loopActiveDimmedColor
+						: colors.colorRed
         radius: display.boxesRadius
 
         Text {
-          text: deckInfo.bpmString
+          text: deckInfo.shift ? (settings.bpmDifference ? deckInfo.bpmOffset : deckInfo.masterBPM) : deckInfo.bpmString
           font.pixelSize: 24
           font.family: "Roboto"
           font.weight: Font.Normal
@@ -123,8 +124,8 @@ Item {
 		
         Text {
           id: keyText
-          text: deckInfo.hasKey && (deckInfo.keyAdjustString != "-0") && (deckInfo.keyAdjustString != "+0") ? deckInfo.keyString + " " + deckInfo.keyAdjustString
-				: deckInfo.hasKey ? deckInfo.keyString
+          text: deckInfo.hasKey && (deckInfo.keyAdjustString != "-0") && (deckInfo.keyAdjustString != "+0") ? (settings.camelotKey ? utils.camelotConvert(deckInfo.keyString) : deckInfo.keyString) + " " + deckInfo.keyAdjustString
+				: deckInfo.hasKey ? (settings.camelotKey ? utils.camelotConvert(deckInfo.keyString) : deckInfo.keyString)
 					: "No key"
           font.pixelSize: 24	
           font.family: "Roboto"
@@ -170,7 +171,7 @@ Item {
         }
 
         Text {
-          text: deckInfo.remainingTimeString
+          text: deckInfo.shift ? (settings.elapsedTime ? deckInfo.remainingTimeString : deckInfo.elapsedTimeString) : (settings.elapsedTime ? deckInfo.elapsedTimeString : deckInfo.remainingTimeString)
           font.pixelSize: 28
           font.family: "Roboto"
           font.weight: Font.Medium
@@ -206,7 +207,7 @@ Item {
 
         Rectangle {
           anchors.fill: parent
-          color: deckInfo.loopActiveLoop ? (loopActiveBlinkTimer.blink ? colors.loopActiveDimmedColor : colors.loopActiveColor)
+          color: deckInfo.loopActiveLoop ? (loopActiveBlinkTimer.blink ? (settings.loopActiveRedFlash ? colors.colorRed : colors.loopActiveDimmedColor) : colors.loopActiveColor)
 					: deckInfo.loopActive ? (deckInfo.shift ? colors.loopActiveDimmedColor : colors.loopActiveColor) 
 						: deckInfo.shift ? colors.colorDeckDarkGrey : colors.colorDeckGrey 
           radius: display.boxesRadius

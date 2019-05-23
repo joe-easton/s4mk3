@@ -41,7 +41,7 @@ QtObject {
   
 
   property variant waveformColorsMap: [
-    // test
+    // RGB
 	{ low1:  rgba (200,   0,   0, 150),  low2:  rgba (245, 120,  10, 160),
       mid1:  rgba (241, 230, 110, 120),  mid2:  rgba ( 20, 245, 170, 150),
       high1: rgba (200, 230, 255, 140),  high2: rgba (170, 255, 255, 140) },
@@ -117,12 +117,12 @@ QtObject {
 
   function getDefaultWaveformColors()
   {
-    return waveformColorsMap[0];
+    return waveformColorsMap[settings.waveformColour];
   }
 
   function getWaveformColors(colorId)
   {
-    if(colorId <= 16) {
+    if(colorId <= 17) {
       return waveformColorsMap[colorId];
     }
 

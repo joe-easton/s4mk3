@@ -30,7 +30,7 @@ Item
   property int deckId: 1
   readonly property bool    trackEndWarning:      propTrackEndWarning.value
   readonly property bool    shift:                propShift.value
-  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.4 By Joe Easton"
+  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.5 By Joe Easton"
   readonly property string  bpmString:            isLoaded ? propBPM.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringA:            isLoaded ? propBPM1.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringB:            isLoaded ? propBPM2.value.toFixed(2).toString() : "0.00"
@@ -42,6 +42,7 @@ Item
   readonly property string  tempoString:		  isLoaded ? ((propTempo.value-1)*100).toFixed(2).toString() : "0.00"
   readonly property string  tempoStringPer:		  tempoString+'%'
   readonly property string  tempoAbsolute:        propMixerStableTempo.value
+  readonly property string  songBPM:              propSongBPM.value.toFixed(3).toString()
   readonly property real    elapsedTime:          propElapsedTime.value 
   readonly property bool    hightlightLoop:       !shift
   readonly property bool    hightlightKey:        shift
@@ -58,6 +59,7 @@ Item
   readonly property string  loopSizeString:       loopSizeText[propLoopSizeIdx.value]
   readonly property string  primaryKey:           propPrimaryKey.value
   readonly property string  remainingTimeString:  (!isLoaded) ? "00:00" : utils.computeRemainingTimeString(propTrackLength.value, propElapsedTime.value)
+  readonly property string  elapsedTimeString:    (!isLoaded) ? "00:00" : utils.convertToTimeString(Math.floor(propElapsedTime.value))
   readonly property string  titleString:          isLoaded ? propTitle.value : "Please Load a Track to Deck " + deckLetter(deckId) 
   readonly property int     trackLength:          propTrackLength.value
   readonly property real    phase:                propPhase.value
@@ -74,6 +76,7 @@ Item
   AppProperty { id: propDeckType;               path: "app.traktor.decks." + deckId + ".type" }
   AppProperty { id: propTitle;                  path: "app.traktor.decks." + deckId + ".content.title" }
   AppProperty { id: propArtist;                 path: "app.traktor.decks." + deckId + ".content.artist" }
+  AppProperty { id: propSongBPM;                 path: "app.traktor.decks." + deckId + ".content.bpm" }
   AppProperty { id: propKeyForDisplay;          path: "app.traktor.decks." + deckId + ".track.key.key_for_display" }
   AppProperty { id: propFinalKeyId;             path: "app.traktor.decks." + deckId + ".track.key.final_id" }
   AppProperty { id: propKeyAdjust;              path: "app.traktor.decks." + deckId + ".track.key.adjust" }

@@ -90,7 +90,7 @@ Traktor.Stripe {
 
     color:               colors.colorRedPlaymarker
     opacity:             0 // initial state
-    visible:             trackEndWarning
+    visible:             trackEndWarning && settings.waveformEndFlashing
 
     Timer {
       id: timer
@@ -99,7 +99,7 @@ Traktor.Stripe {
 
       interval: 250
       repeat:   true
-      running: trackEndWarning
+      running: trackEndWarning && settings.waveformEndFlashing
 
       onTriggered: {
         trackEndWarningOverlay.opacity = (blinker) ? 0.75 : 0;

@@ -23,7 +23,7 @@ Module
 
     Wire { from: "%surface%.sync"; to: "tempo_control.lock"; enabled: module.shift && canLock }
     Wire { from: "%surface%.pitch.led"; to: "tempo_control.indicator" }
-    Wire { from: "%surface%.pitch.fader"; to: "tempo_control.adjust"; enabled: !module.shift }
+    Wire { from: "%surface%.pitch.fader"; to: "tempo_control.adjust"; enabled: true }
     Wire { from: "%surface%.master";      to: "tempo_control.reset"           ; enabled: module.shift && !deckInSync.value  }
   }
 }

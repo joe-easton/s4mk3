@@ -28,6 +28,7 @@ Item {
 
   Defines.Font   {id: fonts}
   Defines.Utils  {id: utils}
+  Defines.Settings  {id: settings}
   Defines.Durations {id: durations}
   Views.Colors {id: colors}
 

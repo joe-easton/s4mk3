@@ -61,5 +61,4 @@ Item {
     visible: (!propTopDeckFocus.value && propTopDeckSelectedSlot.value == 0) || propBottomDeckSelectedSlot.value != 0;
     anchors.fill: parent
   }
-
 }

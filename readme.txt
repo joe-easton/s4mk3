@@ -16,6 +16,14 @@ Windows:
 2. Rename the 'qml' folder to 'qml-old'
 3. Paste the ‘qml’ folder from the zip you downloaded here and replace all files
 
+Modify Settings:
+1. Open the Settings.qml file at qml/Screens/Defines/Settings.qml with your desired text editor (e.g. notepad++)
+2. Read the instructions for ech setting and change the values accordingly
+
+Restore to default settings:
+1. Delete the Settings.qml folder
+2. Make a copy of the Settings-Default.qml
+3. Rename the copy as 'Settings.qml' (capital S for settings)
 
 Resore to default: 
 1. Delete 'qml' folder

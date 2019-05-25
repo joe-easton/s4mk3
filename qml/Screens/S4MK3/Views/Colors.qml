@@ -1,6 +1,16 @@
 import QtQuick 2.0
 
+
+
+
 QtObject {
+
+  property int deckA: settings.deckAWaveformColour
+  property int deckB: settings.deckBWaveformColour
+  property int deckC: settings.deckCWaveformColour
+  property int deckD: settings.deckDWaveformColour
+
+
 
   function rgba(r,g,b,a) { return Qt.rgba(  r/255. ,  g/255. ,  b/255. , a/255. ) }
   function darkerColor( c, factor ) { return Qt.rgba(factor*c.r, factor*c.g, factor*c.b, c.a); }
@@ -135,9 +145,18 @@ QtObject {
   
                     
 
-  function getDefaultWaveformColors()
+  function getDefaultWaveformColors(deckID)
   {
-    return waveformColorsMap[settings.waveformColour];
+	switch(deckId) {
+		case 1: 
+			return waveformColorsMap[settings.deckAWaveformColour];
+		case 2:
+			return waveformColorsMap[settings.deckBWaveformColour];
+		case 3:
+			return waveformColorsMap[settings.deckCWaveformColour];
+		case 4:
+			return waveformColorsMap[settings.deckDWaveformColour];
+	}
   }
 
   function getWaveformColors(colorId)

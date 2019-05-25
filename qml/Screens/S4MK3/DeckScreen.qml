@@ -34,8 +34,8 @@ Item {
 
   Component {
     id: trackDeckComponent;
-
     Views.TrackDeck {
+	  id: trackDeck
       deckInfo: deckInfoModel
       anchors.fill: parent
     }
@@ -58,6 +58,7 @@ Item {
       anchors.fill: parent
     }
   }
+  
 
   Loader {
     id: loader

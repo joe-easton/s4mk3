@@ -9,11 +9,13 @@ Traktor.Stripe {
   property real          elapsedTime: 0
   property int           interval: 100
   property bool          trackEndWarning: deckInfo.trackEndWarning
-  readonly property var  waveformColors:   colors.getDefaultWaveformColors()
+  readonly property var  waveformColors:   colors.getDefaultWaveformColors(deckInfo.deckId)
   
   //-----------------------------------------------------Traktor Stripe Props--------------------------------------------
 
   deckId:        0
+  
+  
 
   function lighterColor (c, factor) {
     return Qt.rgba( Math.min(1.0, factor*c.r) ,  Math.min(1.0, factor*c.g) , Math.min(1.0, factor*c.b) , Math.min(1., factor*c.a) );

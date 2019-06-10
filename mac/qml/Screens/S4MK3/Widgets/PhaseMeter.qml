@@ -15,7 +15,7 @@ Item {
 			if (phaseA == 0) {return colors.red} 
 				else if (phaseA == 1) {return colors.darkOrange} 
 				else if (phaseA == 2) {return colors.lightOrange} 
-				else if (phaseA == 3) {return colors.colorWhite} 
+				else if (phaseA == 3) {return colors.phaseColor} 
 				else if (phaseA == 4) {return colors.yellow} 
 				else if (phaseA == 5) {return colors.lime} 
 				else if (phaseA == 6) {return colors.green} 
@@ -28,6 +28,7 @@ Item {
 				else if (phaseA == 13) {return colors.purple} 
 				else if (phaseA == 14) {return colors.magenta} 
 				else if (phaseA == 15) {return colors.fuschia}
+				else if (phaseA == 16) {return colors.colorWhite}
 				else {return colors.colorDeckBlueBright};		
 			
 		  case 2:
@@ -35,19 +36,20 @@ Item {
 		  if (phaseB == 0) {return colors.red} 
 				else if (phaseB == 1) {return colors.darkOrange} 
 				else if (phaseB == 2) {return colors.lightOrange} 
-				else if (phaseB == 3) {return colors.colorWhite} 
+				else if (phaseB == 3) {return colors.phaseColor} 
 				else if (phaseB == 4) {return colors.yellow} 
 				else if (phaseB == 5) {return colors.lime} 
 				else if (phaseB == 6) {return colors.green} 
 				else if (phaseB == 7) {return colors.mint} 
 				else if (phaseB == 8) {return colors.cyan} 
 				else if (phaseB == 9) {return colors.turquoise} 
-				else if (phaseB == 10) {return colors.colorDeckBlueBright} 
+				else if (phaseB == 10) {return colors.blue} 
 				else if (phaseB == 11) {return colors.plum} 
 				else if (phaseB == 12) {return colors.violet} 
 				else if (phaseB == 13) {return colors.purple} 
 				else if (phaseB == 14) {return colors.magenta} 
 				else if (phaseB == 15) {return colors.fuschia}
+				else if (phaseA == 16) {return colors.colorWhite}
 				else {return colors.colorDeckBlueBright};
 				
 		  case 3:
@@ -55,19 +57,20 @@ Item {
 		  if (phaseC == 0) {return colors.red} 
 				else if (phaseC == 1) {return colors.darkOrange} 
 				else if (phaseC == 2) {return colors.lightOrange} 
-				else if (phaseC == 3) {return colors.colorWhite} 
+				else if (phaseC == 3) {return colors.phaseColor} 
 				else if (phaseC == 4) {return colors.yellow} 
 				else if (phaseC == 5) {return colors.lime} 
 				else if (phaseC == 6) {return colors.green} 
 				else if (phaseC == 7) {return colors.mint} 
 				else if (phaseC == 8) {return colors.cyan} 
 				else if (phaseC == 9) {return colors.turquoise} 
-				else if (phaseC == 10) {return colors.colorDeckBlueBright} 
+				else if (phaseC == 10) {return colors.blue} 
 				else if (phaseC == 11) {return colors.plum} 
 				else if (phaseC == 12) {return colors.violet} 
 				else if (phaseC == 13) {return colors.purple} 
 				else if (phaseC == 14) {return colors.magenta} 
 				else if (phaseC == 15) {return colors.fuschia}
+				else if (phaseA == 16) {return colors.colorWhite}
 				else {return colors.lightOrange};
 		  
 		  case 4:
@@ -75,7 +78,7 @@ Item {
 		  if (phaseD == 0) {return colors.red} 
 				else if (phaseD == 1) {return colors.darkOrange} 
 				else if (phaseD == 2) {return colors.lightOrange} 
-				else if (phaseD == 3) {return colors.colorWhite} 
+				else if (phaseD == 3) {return colors.phaseColor} 
 				else if (phaseD == 4) {return colors.yellow} 
 				else if (phaseD == 5) {return colors.lime} 
 				else if (phaseD == 6) {return colors.green} 
@@ -88,6 +91,7 @@ Item {
 				else if (phaseD == 13) {return colors.purple} 
 				else if (phaseD == 14) {return colors.magenta} 
 				else if (phaseD == 15) {return colors.fuschia}
+				else if (phaseA == 16) {return colors.colorWhite}
 				else {return colors.lightOrange};
 
 			

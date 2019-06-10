@@ -25,6 +25,22 @@ Item
 	if (deckId == 4) {return "D"};
 
   }
+  
+  function tempoNeeded(master, current)
+  {
+	if (master > current) {
+		
+		return (1-(current/master))*100;
+		
+	} else if (master < current) {
+		
+		return ((master/current)-1)*100;
+		
+	}
+  
+  }
+  
+  function toInt_round(val) { return parseInt(val+0.5); }
 
   ////////////////////////////////////
   /////// Track info properties //////
@@ -34,7 +50,7 @@ Item
   property int deckId: 1
   readonly property bool    trackEndWarning:      propTrackEndWarning.value
   readonly property bool    shift:                propShift.value
-  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.7 By Joe Easton"
+  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.8.1 By Joe Easton"
   readonly property string  bpmString:            isLoaded ? propBPM.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringA:            isLoaded ? propBPM1.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringB:            isLoaded ? propBPM2.value.toFixed(2).toString() : "0.00"
@@ -44,7 +60,10 @@ Item
   readonly property string  masterBPM:            (masterDeck == 1) ? bpmStringA : (masterDeck == 2) ? bpmStringB : (masterDeck == 3) ? bpmStringC : (masterDeck == 4) ? bpmStringD : "0.00"
   readonly property string  bpmOffset:            isLoaded ? (bpmString - masterBPM).toFixed(2).toString() : "0.00"  
   readonly property string  tempoString:		  isLoaded ? ((propTempo.value-1)*100).toFixed(2).toString() : "0.00"
+  readonly property string  tempoRange:		  	  toInt_round(propTempoRange.value*100).toString() + "%"
   readonly property string  tempoStringPer:		  tempoString+'%'
+  readonly property string  tempoNeededVal:	      tempoNeeded(masterBPM, bpmString).toFixed(2).toString()
+  readonly property string  tempoNeededString:	  isLoaded ? (tempoNeededVal < 0) ?  tempoNeededVal + "%" : "+" + tempoNeededVal + "%" : "0.00"
   readonly property string  tempoAbsolute:        propMixerStableTempo.value
   readonly property string  songBPM:              propSongBPM.value.toFixed(3).toString()
   readonly property real    elapsedTime:          propElapsedTime.value 
@@ -75,8 +94,12 @@ Item
   readonly property string  keyAdjustString:      (keyAdjustVal < 0 ? "" : "+") + (keyAdjustVal).toFixed(0).toString()
   readonly property real    keyAdjustVal:         propKeyAdjust.value*12
   readonly property variant loopSizeText:         ["1/32", "1/16", "1/8", "1/4", "1/2", "1", "2", "4", "8", "16", "32"]
+  readonly property bool 	slicerEnabled: 	      propEnabled.value
 
 
+
+  AppProperty { id: propTempoRange;       		path: "app.traktor.decks." + deckId + ".tempo.range" }
+  AppProperty { id: propEnabled; 	  			path: "app.traktor.decks." + deckId + ".freeze" + ".enabled" }
   AppProperty { id: propDeckType;               path: "app.traktor.decks." + deckId + ".type" }
   AppProperty { id: propTitle;                  path: "app.traktor.decks." + deckId + ".content.title" }
   AppProperty { id: propArtist;                 path: "app.traktor.decks." + deckId + ".content.artist" }

@@ -1,5 +1,10 @@
 import QtQuick 2.5
 import QtQuick.Layouts 1.1
+import CSI 1.0
+import QtGraphicalEffects 1.0
+import Traktor.Gui 1.0 as T
+import '../Waveform' as WF
+
 
 import '../Widgets' as Widgets
 
@@ -97,7 +102,7 @@ Item {
         radius: display.boxesRadius
 
         Text {
-          text: deckInfo.tempoStringPer
+          text: deckInfo.shift ? (settings.shiftExtraPitchDisplay ? (settings.desiredPitch ? deckInfo.tempoNeededString : deckInfo.tempoRange) : deckInfo.tempoStringPer) : deckInfo.tempoStringPer
           font.pixelSize: 24
           font.family: "Roboto"
           font.weight: Font.Normal
@@ -246,8 +251,24 @@ Item {
 
     } // second row
 	
+	//WAVEFORM
+
+	  property string deckSizeState:   "large"
+	  property color  deckColor:       colors.colorRed
+	  
+	  readonly property int waveformHeight: (deckSizeState == "small") ? 0 : ( parent ? ( (deckSizeState == "medium") ? (parent.height-43) : (parent.height-53) ) : 0 )
+
+	  property bool showLoopSize: false
+	  property int  zoomLevel:    1
+	  property bool isInEditMode: false
+	  property string propertiesPath: ""
+
+	  readonly property int minSampleWidth: 0x800
+	  readonly property int sampleWidth: minSampleWidth << zoomLevel
+	  
 	
-	// STRIPE //
+	
+	// PHASE METER //
 	Widgets.PhaseMeter
     {
       height: 18
@@ -256,6 +277,8 @@ Item {
 	  
 	  phase:  deckInfo.phase
     }
+
+
 
     // STRIPE //
     Widgets.Stripe
@@ -277,6 +300,8 @@ Item {
       elapsedTime:  deckInfo.elapsedTime
       audioStreamKey: ["PrimaryKey", deckInfo.primaryKey]
     }
+	
+	
 
   }
 

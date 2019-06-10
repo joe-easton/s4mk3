@@ -59,6 +59,7 @@ QtObject {
   property color purple:                 "#c81ea0"   
   property color magenta:                "#e60a5a"    
   property color fuschia:                "#ff0032"  
+  property color phaseColor: 			 "#90550C"
 
   //--------------------------------------------------------------------------------------------------------------------
 

@@ -1,4 +1,5 @@
 import CSI 1.0
+import QtQuick 2.5
 import "../../Defines"
 import '../../Screens/Defines' as Defines2
 import "../Common"
@@ -13,6 +14,11 @@ Module
   property int deckB: settings.deckBColour
   property int deckC: settings.deckCColour
   property int deckD: settings.deckDColour
+  property int jogA: settings.jogAColour
+  property int jogB: settings.jogBColour
+  property int jogC: settings.jogCColour
+  property int jogD: settings.jogDColour
+  property bool jogFlash: settings.jogwheelEndFlashing
   
   property bool active: false
   property bool enablePads: false
@@ -26,7 +32,27 @@ Module
   property bool isEncoderInUse: samples.isSlotSelected || stems.isStemSelected
   property bool isLinkedDeckEncoderInUse: false
   property var deckColor: S4MK3Functions.colorForDeck(deckIdx,deckA,deckB,deckC,deckD)
+  property var jogColor: S4MK3Functions.colorForDeck(deckIdx,jogA,jogB,jogC,jogD)
   property bool hapticHotcuesEnabled: true
+  
+  AppProperty { id: propTrackEndWarning; path: "app.traktor.decks." + deckIdx + ".track.track_end_warning" }
+
+  Timer {
+          id: trackEndBlinkTimer
+          property bool  blink: false
+
+          interval: 250
+          repeat:   true
+          running:  propTrackEndWarning.value
+
+          onTriggered: {
+            blink = !blink;
+          }
+
+          onRunningChanged: {
+            blink = running;
+          }
+  }
 
   MappingPropertyDescriptor {
     id: deckColorProp
@@ -35,6 +61,13 @@ Module
     value: module.deckColor
   }
 
+  MappingPropertyDescriptor {
+    id: jogColorProp
+    path: deckPropertiesPath + ".jog_color"
+    type: MappingPropertyDescriptor.Integer
+    value: trackEndBlinkTimer.blink ? Color.Black : module.jogColor
+  }
+  
   AppProperty
   {
     id: deckTypeProp;
@@ -146,7 +179,7 @@ Module
 
       Wire
       {
-          from: DirectPropertyAdapter { path: deckPropertiesPath + ".deck_color"; input: false }
+          from: DirectPropertyAdapter { path: deckPropertiesPath + ".jog_color"; input: false }
           to: "%surface%.jogwheel.led_color"
       }
 

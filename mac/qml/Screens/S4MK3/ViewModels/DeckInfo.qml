@@ -41,6 +41,23 @@ Item
   }
   
   function toInt_round(val) { return parseInt(val+0.5); }
+  
+  function computeBeatCounterStringFromPosition(beat) {
+    var phraseLen = 4;
+    var curBeat  = parseInt(beat);
+
+    if (beat < 0.0)
+      curBeat = curBeat*-1;
+
+    var value1 = parseInt(((curBeat/4)/phraseLen)+1);
+    var value2 = parseInt(((curBeat/4)%phraseLen)+1);
+    var value3 = parseInt( (curBeat%4)+1);
+
+    if (beat < 0.0)
+      return "-" + value1.toString() + "." + value2.toString() + "." + value3.toString();
+
+    return value1.toString() + "." + value2.toString() + "." + value3.toString();
+  }
 
   ////////////////////////////////////
   /////// Track info properties //////
@@ -50,12 +67,15 @@ Item
   property int deckId: 1
   readonly property bool    trackEndWarning:      propTrackEndWarning.value
   readonly property bool    shift:                propShift.value
-  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.8.1 By Joe Easton"
+  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.9 By Joe Easton"
   readonly property string  bpmString:            isLoaded ? propBPM.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringA:            isLoaded ? propBPM1.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringB:            isLoaded ? propBPM2.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringC:            isLoaded ? propBPM3.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringD:            isLoaded ? propBPM4.value.toFixed(2).toString() : "0.00"
+  readonly property double  cuePos:               (propNextCuePoint.value >= 0) ? propNextCuePoint.value : propTrackLength.value*1000
+  readonly property string  beats:            	  computeBeatCounterStringFromPosition(((propElapsedTime.value*1000-propGridOffset.value)*propMixerBpm.value)/60000.0)
+  readonly property string  beatsToCue:           computeBeatCounterStringFromPosition(((propElapsedTime.value*1000-cuePos)*propMixerBpm.value)/60000.0)
   readonly property string 	masterDeck: 		  propSyncMasterDeck.value+1
   readonly property string  masterBPM:            (masterDeck == 1) ? bpmStringA : (masterDeck == 2) ? bpmStringB : (masterDeck == 3) ? bpmStringC : (masterDeck == 4) ? bpmStringD : "0.00"
   readonly property string  bpmOffset:            isLoaded ? (bpmString - masterBPM).toFixed(2).toString() : "0.00"  
@@ -97,7 +117,7 @@ Item
   readonly property bool 	slicerEnabled: 	      propEnabled.value
 
 
-
+  AppProperty { id: propNextCuePoint;           path: "app.traktor.decks." + deckId + ".track.player.next_cue_point"; }
   AppProperty { id: propTempoRange;       		path: "app.traktor.decks." + deckId + ".tempo.range" }
   AppProperty { id: propEnabled; 	  			path: "app.traktor.decks." + deckId + ".freeze" + ".enabled" }
   AppProperty { id: propDeckType;               path: "app.traktor.decks." + deckId + ".type" }
@@ -105,8 +125,10 @@ Item
   AppProperty { id: propArtist;                 path: "app.traktor.decks." + deckId + ".content.artist" }
   AppProperty { id: propSongBPM;                 path: "app.traktor.decks." + deckId + ".content.bpm" }
   AppProperty { id: propKeyForDisplay;          path: "app.traktor.decks." + deckId + ".track.key.key_for_display" }
+  AppProperty { id: propMixerBpm;               path: "app.traktor.decks." + deckId + ".tempo.base_bpm" }
   AppProperty { id: propFinalKeyId;             path: "app.traktor.decks." + deckId + ".track.key.final_id" }
   AppProperty { id: propKeyAdjust;              path: "app.traktor.decks." + deckId + ".track.key.adjust" }
+  AppProperty { id: propGridOffset;     	    path: "app.traktor.decks." + deckId + ".content.grid_offset" }
   AppProperty { id: propKeyLockOn;              path: "app.traktor.decks." + deckId + ".track.key.lock_enabled" }
   AppProperty { id: propBPM;                    path: "app.traktor.decks." + deckId + ".tempo.true_bpm" }
   AppProperty { id: propBPM1;                    path: "app.traktor.decks." + 1 + ".tempo.true_bpm" }

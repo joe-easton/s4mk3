@@ -79,7 +79,7 @@ Item {
         radius: display.boxesRadius
 
         Text {
-          text: deckInfo.shift ? (settings.bpmDifference ? deckInfo.bpmOffset : deckInfo.masterBPM) : deckInfo.bpmString
+          text: settings.showMasterBpm ? ((settings.bpmSwap && (deckInfo.masterDeck == deckInfo.deckId)) ? deckInfo.bpmString : (deckInfo.shift ? deckInfo.bpmString : (settings.bpmDifference ? deckInfo.bpmOffset : deckInfo.masterBPM))) : (settings.bpmSwap ? (deckInfo.shift ? deckInfo.bpmString : (settings.bpmDifference ? deckInfo.bpmOffset : deckInfo.masterBPM)) : (deckInfo.shift ? (settings.bpmDifference ? deckInfo.bpmOffset : deckInfo.masterBPM) : deckInfo.bpmString))
           font.pixelSize: 24
           font.family: "Roboto"
           font.weight: Font.Normal
@@ -166,7 +166,7 @@ Item {
       // TIME DISPLAY //
       Item {
         id: timeBox
-        width : display.infoBoxesWidth
+        width : settings.enableBeatsBox ? display.infoBoxesWidth - 52 : display.infoBoxesWidth
         height: display.secondRowHeight-40
 
         Rectangle {
@@ -177,7 +177,7 @@ Item {
 
         Text {
           text: deckInfo.shift ? (settings.elapsedTime ? deckInfo.remainingTimeString : deckInfo.elapsedTimeString) : (settings.elapsedTime ? deckInfo.elapsedTimeString : deckInfo.remainingTimeString)
-          font.pixelSize: 28
+          font.pixelSize: settings.enableBeatsBox ? 26 : 28
           font.family: "Roboto"
           font.weight: Font.Medium
           color: trackEndBlinkTimer.blink ? "black": "white"
@@ -203,11 +203,49 @@ Item {
           }
         }
       }
+	  
+	  //BEATS DISPLAY
+	  Item {
+        id: beatsBox
+        width : display.infoBoxesWidth - 52
+		visible: settings.enableBeatsBox
+        height: display.secondRowHeight-40
+
+        Rectangle {
+          anchors.fill: parent
+          color: colors.colorDeckGrey 
+          radius: display.boxesRadius
+        }
+
+        Text {
+          text: deckInfo.beats
+          font.pixelSize: 26
+          font.family: "Roboto"
+          font.weight: Font.Medium
+          color: colors.defaultTextColor
+          anchors.fill: parent
+          horizontalAlignment: Text.AlignHCenter
+          verticalAlignment: Text.AlignVCenter
+		  visible: settings.showBeatsToCue ? deckInfo.shift : !deckInfo.shift
+        }
+		
+		Text {
+          text: deckInfo.beatsToCue
+          font.pixelSize: 26
+          font.family: "Roboto"
+          font.weight: Font.Medium
+          color: colors.defaultTextColor
+          anchors.fill: parent
+          horizontalAlignment: Text.AlignHCenter
+          verticalAlignment: Text.AlignVCenter
+		  visible: settings.showBeatsToCue ? !deckInfo.shift : deckInfo.shift
+        }
+	  }
 
       // LOOP DISPLAY //
       Item {
         id: loopBox
-        width : display.infoBoxesWidth
+        width : settings.enableBeatsBox ? display.infoBoxesWidth - 52 : display.infoBoxesWidth
         height: display.secondRowHeight-40
 
         Rectangle {
@@ -220,7 +258,7 @@ Item {
 
         Text {
           text: deckInfo.loopSizeString
-          font.pixelSize: 28
+          font.pixelSize: settings.enableBeatsBox ? 26 : 28
           font.family: "Roboto"
           font.weight: Font.Medium
           color: deckInfo.loopActive ? "black" : ( deckInfo.shift ? colors.colorDeckGrey : colors.defaultTextColor )

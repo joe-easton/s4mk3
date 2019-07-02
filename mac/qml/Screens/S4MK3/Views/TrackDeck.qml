@@ -124,6 +124,8 @@ Item {
 		
 		
 		color:     colors.musicalKeyColors[deckInfo.keyIndex]
+		
+		
                          
         radius: display.boxesRadius
 		

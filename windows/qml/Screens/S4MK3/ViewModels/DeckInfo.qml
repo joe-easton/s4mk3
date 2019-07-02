@@ -67,7 +67,7 @@ Item
   property int deckId: 1
   readonly property bool    trackEndWarning:      propTrackEndWarning.value
   readonly property bool    shift:                propShift.value
-  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.9 By Joe Easton"
+  readonly property string  artistString:         isLoaded ? propArtist.value : "Beta v0.9.1 By Joe Easton"
   readonly property string  bpmString:            isLoaded ? propBPM.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringA:            isLoaded ? propBPM1.value.toFixed(2).toString() : "0.00"
   readonly property string  bpmStringB:            isLoaded ? propBPM2.value.toFixed(2).toString() : "0.00"
@@ -124,7 +124,7 @@ Item
   AppProperty { id: propTitle;                  path: "app.traktor.decks." + deckId + ".content.title" }
   AppProperty { id: propArtist;                 path: "app.traktor.decks." + deckId + ".content.artist" }
   AppProperty { id: propSongBPM;                 path: "app.traktor.decks." + deckId + ".content.bpm" }
-  AppProperty { id: propKeyForDisplay;          path: "app.traktor.decks." + deckId + ".track.key.key_for_display" }
+  AppProperty { id: propKeyForDisplay;          path: "app.traktor.decks." + deckId + ".track.key.resulting.quantized" }
   AppProperty { id: propMixerBpm;               path: "app.traktor.decks." + deckId + ".tempo.base_bpm" }
   AppProperty { id: propFinalKeyId;             path: "app.traktor.decks." + deckId + ".track.key.final_id" }
   AppProperty { id: propKeyAdjust;              path: "app.traktor.decks." + deckId + ".track.key.adjust" }
